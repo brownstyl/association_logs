@@ -1,0 +1,8 @@
+# Block VS Code specific environment settings
+.vscode/
+
+# Block SQLTools temporary query files
+*.session.sql
+
+# Block environment files that hold real passwords (for when you add Python/Go)
+.env
