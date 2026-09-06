@@ -19,3 +19,27 @@ All notable changes to this project will be recorded here.
 - Database schema
 - Authentication
 - Meeting records
+
+
+#####
+> for later prompt
+>
+>> entities are...(user, association, meeting, membership, attendance, minutes, )
+
+relationship and connections 
+
+                                          user
+
+                                             |
+
+                                        /           \
+
+                        association            membership
+
+                         /                                                 \        
+
+              meeting, minutes,                           meeting
+
+for now this is how they're supposed to be talking to themselves before adding other features and this is v.1
+
+             
