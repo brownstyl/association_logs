@@ -135,7 +135,9 @@ A User can:
 
 ### Responsibility
 
-(Write this in your own words.)
+Represents an organization that operates inside MeetingRecord.
+
+An Association owns its members, meetings, attendance records, and meeting history.
 
 ---
 
@@ -143,16 +145,21 @@ A User can:
 
 | Attribute | Why does it belong to Association? |
 |-----------|------------------------------------|
-| association_id| unique identifier of all association |
-| association_name | this completely marks out the unique name given to identify the association |
-| created_by| this holds info of the creator |
-| Public Association ID| viable and a unique code users can use to be connected to an association |
+| `association_id` | Internal unique identity for every association. |
+| `association_name` | Human-readable name of the association. |
+| `public_association_id` | Public join code used by members. |
+| `association_slug` | Clean URL identifier for future sharing. |
+| `created_by` | Identifies the user who created the association. |
 
 ---
 
 ### Business Rules
 
-- (Write at least four.)
+- Every association has one creator.
+- The creator becomes the first Admin.
+- Every association receives a unique public join code.
+- Members join using the public association ID.
+- Associations remain isolated from one another.
 
 ---
 
@@ -160,5 +167,5 @@ A User can:
 
 | Relationship | Cardinality |
 |-------------|------------|
-| Association → Membership | |
-| Association → Meeting | |
+| Association → Membership | 1:N |
+| Association → Meeting | 1:N |
