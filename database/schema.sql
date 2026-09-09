@@ -7,6 +7,7 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+
 CREATE TABLE associations (
     association_id INT PRIMARY KEY AUTO_INCREMENT,
     association_name VARCHAR(100) NOT NULL,
@@ -19,3 +20,7 @@ CREATE TABLE associations (
     FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
+CREATE TABLE meetingrecord (
+    meeting_id INT PRIMARY KEY AUTO_INCREMENT,
+
+)
