@@ -49,7 +49,8 @@ CREATE TABLE meetings (
     title VARCHAR(200) NOT NULL,
     meeting_date DATETIME NOT NULL,
     venue VARCHAR(200) NOT NULL,
-    meeting_status ENUM('In_Progress', 'Completed', 'Cancelled', 'Scheduled') DEFAULT 'Schedule',
+    meeting_description VARCHAR(300) NULL,
+    meeting_status ENUM('Scheduled', 'In_Progress', 'Completed', 'Cancelled') DEFAULT 'Scheduled',
     created_by INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
@@ -61,4 +62,24 @@ CREATE TABLE meetings (
         FOREIGN KEY (created_by) REFERENCES users(user_id)
             ON DELETE RESTRICT
 
+);
+
+
+CREATE TABLE attendance (
+    attendance_id INT PRIMARY KEY AUTO_INCREMENT,
+    meeting_id INT NOT NULL,
+    user_id INT NOT NULL,
+    attendance_status ENUM('Present', 'Absent', 'Late', 'Excused') DEFAULT 'Absent',
+    marked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_attendance_meeting_id
+        FOREIGN KEY (meeting_id) REFERENCES meetings(meeting_id)
+            ON DELETE RESTRICT,
+
+    CONSTRAINT fk_attendance_user_id
+        FOREIGN KEY (user_id) REFERENCES users(user_id)
+            ON DELETE RESTRICT,
+        
+    CONSTRAINT unique_meeting_attendance
+        UNIQUE(meeting_id, user_id)
 );
