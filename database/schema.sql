@@ -24,18 +24,25 @@ CREATE TABLE associations (
 
 CREATE TABLE memberships (
     membership_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    association_id INT,
+    user_id INT NOT NULL,
+    association_id INT NOT NULL,
     roles ENUM('Admin', 'Member') DEFAULT 'Member',
     joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT fk_membership_users_id 
-        FOREIGN KEY (user_id) REFERENCES users(user_id),
+        FOREIGN KEY (user_id) REFERENCES users(user_id) 
+            ON DELETE RESTRICT,
 
     CONSTRAINT fk_membership_association_id 
-        FOREIGN KEY (association_id) REFERENCES associations (association_id),
+        FOREIGN KEY (association_id) REFERENCES associations (association_id)
+            ON DELETE RESTRICT,
 
     CONSTRAINT unique_membership 
         UNIQUE (user_id, association_id)
     
 );
+
+
+CREATE TABLE meetings (
+    
+)
