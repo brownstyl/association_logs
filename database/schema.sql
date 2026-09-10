@@ -44,5 +44,21 @@ CREATE TABLE memberships (
 
 
 CREATE TABLE meetings (
-    
-)
+    meeting_id INT PRIMARY KEY AUTO_INCREMENT,
+    association_id INT NOT NULL,
+    title VARCHAR(200) NOT NULL,
+    meeting_date DATETIME NOT NULL,
+    venue VARCHAR(200) NOT NULL,
+    meeting_status ENUM('In_Progress', 'Completed', 'Cancelled', 'Scheduled') DEFAULT 'Schedule',
+    created_by INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_meetings_association_id
+        FOREIGN KEY (association_id) REFERENCES associations(association_id)
+            ON DELETE RESTRICT,
+        
+    CONSTRAINT fk_meetings_created_by
+        FOREIGN KEY (created_by) REFERENCES users(user_id)
+            ON DELETE RESTRICT
+
+);
